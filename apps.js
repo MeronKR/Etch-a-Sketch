@@ -3,12 +3,13 @@ let gridSize=0;
 let numSquares = 0;
 
 const body = document.getElementById("container");
-const container =document.getElementById("gridFrame");
-const square = document.createElement("div");
 body.style.display = "flex";
 body.style.justifyContent= "center";
 body.style.alignItems = "center"
-body.style.flexDirection = "column"
+body.style.flexDirection = "column";
+const container =document.getElementById("gridFrame");
+container.style.border = "1px solid black"
+const square = document.createElement("div");
 
 const startBtn = document.querySelector(".start");
 startBtn.addEventListener("click", function(){
@@ -19,7 +20,19 @@ startBtn.addEventListener("click", function(){
     }
     numSquares = gridSize*gridSize
     createGrid()
+    makeResetBtn()
 })
+
+const reset = document.createElement("button")
+function makeResetBtn(){
+    const buttonField = document.querySelector(".buttons")
+    reset.innerText = "Reset Drawing"
+    reset.classList.add ("reset")
+    buttonField.appendChild(reset)
+}
+    reset.addEventListener("click", function(){
+        clearGrid()
+    })
 
 function createGrid(){
     const container =document.getElementById("gridFrame");
@@ -30,13 +43,15 @@ function createGrid(){
     for (let i=0; i<numSquares; i++){
         const square = document.createElement("div");
         square.style.border = "1px dashed black";
-        square.addEventListener("mouseover", function(){
+        square.addEventListener("mouseenter", function(){
             square.style.backgroundColor = "black"
-        } )
+        })
+        square.addEventListener("mousedown", function(){
+            square.style.backgroundColor = "white"
+        })
         container.insertAdjacentElement("beforeend", square)
     };
 }
-
 
 //grid clear
 function clearGrid(){
@@ -44,3 +59,4 @@ function clearGrid(){
     let squares = container.querySelectorAll("div")
     squares.forEach((div) => div.remove());
 };
+
