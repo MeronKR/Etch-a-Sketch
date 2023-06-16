@@ -1,4 +1,4 @@
-//grid creation + hover
+//styling
 let gridSize=0;
 let numSquares = 0;
 
@@ -10,6 +10,7 @@ body.style.flexDirection = "column";
 const container =document.getElementById("gridFrame");
 container.style.border = "1px solid black"
 const square = document.createElement("div");
+
 
 const startBtn = document.querySelector(".start");
 startBtn.addEventListener("click", function(){
@@ -23,17 +24,7 @@ startBtn.addEventListener("click", function(){
     makeResetBtn()
 })
 
-const reset = document.createElement("button")
-function makeResetBtn(){
-    const buttonField = document.querySelector(".buttons")
-    reset.innerText = "Reset Drawing"
-    reset.classList.add ("reset")
-    buttonField.appendChild(reset)
-}
-    reset.addEventListener("click", function(){
-        clearGrid()
-    })
-
+    //grid creation + hover
 function createGrid(){
     const container =document.getElementById("gridFrame");
     container.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
@@ -44,7 +35,7 @@ function createGrid(){
         const square = document.createElement("div");
         square.style.border = "1px dashed black";
         square.addEventListener("mouseenter", function(){
-            square.style.backgroundColor = "black"
+            square.style.backgroundColor = `${color}`
         })
         square.addEventListener("mousedown", function(){
             square.style.backgroundColor = "white"
@@ -60,3 +51,22 @@ function clearGrid(){
     squares.forEach((div) => div.remove());
 };
 
+const reset = document.createElement("button")
+const buttonField = document.querySelector(".buttons")
+function makeResetBtn(){
+    const buttonField = document.querySelector(".buttons")
+    reset.innerText = "Reset Drawing"
+    reset.classList.add ("reset")
+    buttonField.appendChild(reset)
+}
+    reset.addEventListener("click", function(){
+        clearGrid()
+    })
+
+//color
+let color = ""
+const colorVal = document.querySelector(".color")
+colorVal.addEventListener("change", function(){
+    color = this.value
+    console.log(color)
+})
