@@ -9,19 +9,26 @@
 </head>
 <body>
     <div id="container">
-        <h1>Etch-a-Sketch</h1>
+        
         <div class="buttons">
             <div class="colors">
                 <button class="rainbow">Rainbow Mode</button>
                 <input type="color" class ="color">
             </div>
             <div class="input">
+                
                 <input type="range" min = 2 max = 50 value = 25 name="boxRange" id="boxRange">
+                <p>Adjust the slider to build your grid</p>
                 <label for="boxRange" class="label"></label>
+                
             </div>
         </div>
-        <div id="gridFrame"></div>
         
+        <div class="draw">
+            <h1>Etch-a-Sketch</h1>
+            
+            <div id="gridFrame"></div>
+        </div>
     </div>
     <script src="apps.js"></script>
 </body>

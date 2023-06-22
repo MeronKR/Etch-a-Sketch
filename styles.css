@@ -1,12 +1,69 @@
-#container {
-    width: 100%;
-    height: 100%;
+body {
+    background-image:url("https://images.unsplash.com/photo-1510936111840-65e151ad71bb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1190&q=80") ;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+h1 {
+    text-align: center;
+    margin: 2rem;
+    font-size: 42px;
+    color: white;
+    margin-bottom:6rem;
+    
 }
 
+p {
+    font-size: 30px;
+    color: white;
+    font-weight: 700px;
+    text-align: center;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    flex: 1;
+} 
+
 #gridFrame {
-    width: 600px;
-    height: 600px;
+    width: 950px;
+    height: 950px;
     display: grid;
     margin: 25px;
 }
 
+.draw {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+.buttons,
+.colors,
+.input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5em
+}
+
+.buttons{
+    margin-right: 2rem;
+}
+
+button, label {
+    background-color: white;
+    color: black;
+    font-size: 24px;
+    border-radius: 10px;
+    padding: 15px 10px;
+}

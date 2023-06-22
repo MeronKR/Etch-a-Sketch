@@ -2,19 +2,13 @@
 let gridSize=0;
 let numSquares = 0;
 
-const body = document.getElementById("container");
-body.style.display = "flex";
-body.style.justifyContent= "center";
-body.style.alignItems = "center"
-body.style.flexDirection = "column";
 const container =document.getElementById("gridFrame");
-container.style.border = "1px solid black"
+container.style.border = "1px solid white"
 const square = document.createElement("div");
 const squares = container.querySelectorAll(".innerSq")
 const slider = document.querySelector("#boxRange")
 const sliderLabel = document.querySelector(".label")
 
-let sliderV
 
 slider.addEventListener("change", function(){
     clearGrid();
@@ -22,7 +16,8 @@ slider.addEventListener("change", function(){
     numSquares = gridSize*gridSize
     createGrid()
     makeResetBtn()
-    sliderLabel.textContent = slider.value
+    sliderLabel.textContent = `${slider.value} x ${slider.value}`
+    
 })
 
     //grid creation + hover
@@ -30,14 +25,16 @@ function createGrid(){
     const container =document.getElementById("gridFrame");
     container.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
     container.style.gridTemplateRows =  `repeat(${gridSize}, 1fr)`;
-    container.style.border = "1px solid black";
+    container.style.borderColor = "white"
+    container.style.borderWidth = "thin"
     
     for (let i=0; i<numSquares; i++){
         const square = document.createElement("div");
         square.classList.add("innerSq")
-        square.style.border = "1px dashed black";
+        square.style.border = "1px solid white";
         square.addEventListener("mouseenter", function(){
             square.style.backgroundColor = `${color}`
+            square.style.borderColor=`${color}`
             
         })
         square.addEventListener("mousedown", function(){
@@ -67,27 +64,31 @@ function makeResetBtn(){
     })
 
 //defaultColor
-let color = "rgb(0,0,0)"
+let color = "rgb(255,255,255)"
 const colorVal = document.querySelector(".color")
 colorVal.addEventListener("change", function(){
     color = this.value
     console.log(color)
+    rainbowMode = false
 })
 
 
 // randomColor
 let rgb = "rgb(0,0,0)";
-function colRandom (){
+let rainbowMode = false
+if(rainbowMode == false){
+    function colRandom (){
         const r = Math.floor(Math.random()*255)
         const g = Math.floor(Math.random()*255)
         const b = Math.floor(Math.random()*255)
         rgb = `rgb(${r},${g},${b})` 
         color = rgb
+        rainbowBtn.style.color = `${color}`
+}  
 }
 
 const rainbowBtn= document.querySelector(".rainbow")
-    rainbowBtn.addEventListener("click", function(){
-            console.log("rainbowMode")
-            setInterval(colRandom, 10)
-        }) 
-
+rainbowBtn.addEventListener("click", function(){
+            rainbowMode = true
+            setInterval(colRandom, 250)
+        })
