@@ -11,18 +11,18 @@ const container =document.getElementById("gridFrame");
 container.style.border = "1px solid black"
 const square = document.createElement("div");
 const squares = container.querySelectorAll(".innerSq")
+const slider = document.querySelector("#boxRange")
+const sliderLabel = document.querySelector(".label")
 
+let sliderV
 
-const startBtn = document.querySelector(".start");
-startBtn.addEventListener("click", function(){
+slider.addEventListener("change", function(){
     clearGrid();
-    gridSize = parseInt(prompt("How many squares do you want per side from 2-100?"))
-    while (gridSize>100 || gridSize<2){
-        gridSize =  parseInt(prompt("How many squares do you want per side from 2-100?"))
-    }
+    gridSize = parseInt(slider.value)
     numSquares = gridSize*gridSize
     createGrid()
     makeResetBtn()
+    sliderLabel.textContent = slider.value
 })
 
     //grid creation + hover
@@ -90,3 +90,4 @@ const rainbowBtn= document.querySelector(".rainbow")
             console.log("rainbowMode")
             setInterval(colRandom, 10)
         }) 
+
